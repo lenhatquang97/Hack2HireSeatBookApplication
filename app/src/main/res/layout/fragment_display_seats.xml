@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.display_seats.DisplaySeatsFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Select Seat"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/seatLists"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/availableRed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/availableRed"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/red_couch"
+            app:layout_constraintBottom_toTopOf="@+id/seatLists"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+
+            />
+
+
+        <TextView
+            android:id="@+id/availableTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Available"
+
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toEndOf="@id/availableRed" />
+
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/chosenBlue"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/blue_couch"
+            app:layout_constraintBottom_toTopOf="@+id/seatLists"
+            app:layout_constraintStart_toEndOf="@id/availableTitle"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/chosenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Selected"
+
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/chosenBlue"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:id="@+id/unavailableDark"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/black_couch"
+            app:layout_constraintBottom_toTopOf="@+id/seatLists"
+            app:layout_constraintEnd_toStartOf="@+id/unavailableTitle"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:layout_marginRight="16dp"
+            android:id="@+id/unavailableTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Unavailable"
+
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seatLists" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

@@ -6,7 +6,25 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="one.app.hack2hire.ui.display_seats.MainFragment"
+        android:name="one.app.hack2hire.ui.display_shows.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_displaySeatsFragment"
+            app:destination="@id/displaySeatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displaySeatsFragment"
+        android:name="one.app.hack2hire.ui.display_seats.DisplaySeatsFragment"
+        android:label="fragment_display_seats"
+        tools:layout="@layout/fragment_display_seats" >
+        <action
+            android:id="@+id/action_displaySeatsFragment_to_seatStatusFragment"
+            app:destination="@id/seatStatusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seatStatusFragment"
+        android:name="one.app.hack2hire.ui.seat_status.SeatStatusFragment"
+        android:label="fragment_seat_status"
+        tools:layout="@layout/fragment_seat_status" />
 </navigation>

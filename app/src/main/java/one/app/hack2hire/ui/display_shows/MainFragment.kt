@@ -1,4 +1,4 @@
-package one.app.hack2hire.ui.display_seats
+package one.app.hack2hire.ui.display_shows
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import one.app.hack2hire.R
 import one.app.hack2hire.databinding.FragmentMainBinding
 import one.app.hack2hire.viewmodel.BookingViewModel

@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import one.app.hack2hire.Hack2HireApplication
+import one.app.hack2hire.model.SeatsModel
+import one.app.hack2hire.model.SeatsModelWrapper
 import one.app.hack2hire.model.ShowsModel
 import one.app.hack2hire.model.StructuredBooking
 import retrofit2.Call
@@ -16,6 +18,26 @@ import retrofit2.Response
 class BookingViewModel: ViewModel() {
     private var _showLists = MutableLiveData<List<ShowsModel>>().apply { value = emptyList() }
     val showLists: MutableLiveData<List<ShowsModel>> = _showLists
+
+    private var _seatLists = MutableLiveData<List<SeatsModel>>().apply { value = emptyList() }
+    val seatLists: MutableLiveData<List<SeatsModel>>  =_seatLists
+
+    fun listAllSeats(showId: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            Hack2HireApplication.bookingRepository.getSeats(showId).enqueue(object : Callback<SeatsModelWrapper> {
+                override fun onResponse(call: Call<SeatsModelWrapper>, response: Response<SeatsModelWrapper>) {
+                    if (response.code() == 200) {
+                        val data = response.body()?.data?.seats
+                        _seatLists.postValue(data)
+                    }
+                }
+
+                override fun onFailure(call: Call<SeatsModelWrapper>, t: Throwable) {
+                    Log.e("BookingViewModel", "Error in fetching shows", t)
+                }
+            })
+        }
+    }
 
     fun listAllShows(){
         viewModelScope.launch(Dispatchers.IO){

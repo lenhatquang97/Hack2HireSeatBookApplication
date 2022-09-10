@@ -1,19 +1,16 @@
-package one.app.hack2hire.ui.display_seats
+package one.app.hack2hire.ui.display_shows
 
 import android.content.Context
+import android.os.Build.VERSION_CODES.S
+import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import androidx.appcompat.widget.PopupMenu
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import one.app.hack2hire.R
 import one.app.hack2hire.databinding.BookingCardBinding
 import one.app.hack2hire.model.ShowsModel
@@ -22,7 +19,7 @@ import java.util.concurrent.Executors
 
 class BookingListAdapter(private var context: Context) :
     ListAdapter<ShowsModel, BookingListAdapter.BookingItemViewHolder>(
-        AsyncDifferConfig.Builder(DownloadListDiffCallback())
+        AsyncDifferConfig.Builder(BookingListDiffCallback())
             .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
             .build()
     ){
@@ -31,7 +28,9 @@ class BookingListAdapter(private var context: Context) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ShowsModel, context: Context) {
             binding.root.setOnClickListener {
-                println("Hello World")
+                val bundle = Bundle()
+                bundle.putString("showId", item.showId)
+                binding.root.findNavController().navigate(R.id.action_mainFragment_to_displaySeatsFragment, bundle)
             }
             binding.startDate.text = HomeUtils.convertUnixTimeToDateTime(item.startDate)
             binding.bookingName.text = item.name
@@ -63,7 +62,7 @@ class BookingListAdapter(private var context: Context) :
 
 }
 
-class DownloadListDiffCallback : DiffUtil.ItemCallback<ShowsModel>() {
+class BookingListDiffCallback : DiffUtil.ItemCallback<ShowsModel>() {
     override fun areItemsTheSame(oldItem: ShowsModel, newItem: ShowsModel): Boolean {
         return oldItem.showId == newItem.showId
     }
