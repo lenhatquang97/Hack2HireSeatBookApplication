@@ -26,11 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:text="You have booked successfully!"
-            android:textStyle="bold"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/imageSrc"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/imageSrc" />
 
         <TextView
             android:id="@+id/name"
@@ -51,6 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
         <TextView
+            android:paddingBottom="16dp"
             android:id="@+id/seatNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,6 +67,14 @@
             android:layout_height="wrap_content"
             android:text="Cancel Booking"
             app:layout_constraintTop_toBottomOf="@id/seatNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <Button
+            android:id="@+id/buttonHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to Home"
+            app:layout_constraintTop_toBottomOf="@id/buttonCancel"
             app:layout_constraintStart_toStartOf="parent"
             />
 

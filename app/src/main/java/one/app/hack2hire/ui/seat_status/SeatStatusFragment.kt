@@ -24,6 +24,14 @@ class SeatStatusFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSeatStatusBinding.inflate(inflater, container, false)
         binding.seatNumber.text = "Seat Number: " + StaticBooking.bookingSeats.joinToString(separator = ",") { it.seatCode}
+        binding.buttonCancel.setOnClickListener {
+            StaticBooking.bookingSeats.clear()
+            it.findNavController().navigate(R.id.action_seatStatusFragment_to_mainFragment)
+        }
+        binding.buttonHome.setOnClickListener {
+            it.findNavController().navigate(R.id.action_seatStatusFragment_to_mainFragment)
+        }
+
         return binding.root
     }
 

@@ -1,14 +1,13 @@
 package one.app.hack2hire.source.remote
 
+import PostReservations
+import ReservationWrapper
 import one.app.hack2hire.model.BookingMessage
 import one.app.hack2hire.model.SeatsModelWrapper
 import one.app.hack2hire.model.ShowsModel
 import one.app.hack2hire.model.StructuredBooking
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 /**
@@ -26,7 +25,7 @@ interface ApiSource {
     fun getSeats(@Path("show_id") showId: String): Call<SeatsModelWrapper>
 
     @POST("booking/shows/{show_id}/reservations")
-    fun postReservation(@Path("show_id") showId: String): Call<Int>
+    fun postReservation(@Path("show_id") showId: String, @Body req: PostReservations): Call<ReservationWrapper>
 
     //Check booking
     @GET("booking/shows/{show_id}/reservations")

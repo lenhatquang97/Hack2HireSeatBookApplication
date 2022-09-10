@@ -13,18 +13,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import one.app.hack2hire.Hack2HireApplication
 import one.app.hack2hire.R
 import one.app.hack2hire.databinding.FragmentDisplaySeatsBinding
+import one.app.hack2hire.globals.StaticBooking
 import one.app.hack2hire.viewmodel.BookingViewModel
 
 class DisplaySeatsFragment : Fragment() {
     private val viewModel: BookingViewModel by activityViewModels()
     private lateinit var binding: FragmentDisplaySeatsBinding
     private lateinit var adapterVal: SeatListAdapter
+    private var id: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val id = arguments?.getString("showId")
+        id = arguments?.getString("showId")
         if(id != null){
-            viewModel.listAllSeats(id)
+            viewModel.listAllSeats(id!!)
         }
     }
 
@@ -46,7 +48,15 @@ class DisplaySeatsFragment : Fragment() {
             }
         }
         binding.confirmButton.setOnClickListener {
-            findNavController().navigate(R.id.action_displaySeatsFragment_to_seatStatusFragment)
+
+            val onSuccess = fun() {
+                findNavController().navigate(R.id.action_displaySeatsFragment_to_seatStatusFragment)
+            }
+            if(StaticBooking.bookingSeats.size != 0){
+                viewModel.postReservations(id!!, requireContext(), onSuccess)
+
+            }
+
         }
 
         return binding.root

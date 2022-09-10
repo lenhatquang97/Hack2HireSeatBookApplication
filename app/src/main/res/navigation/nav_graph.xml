@@ -26,5 +26,9 @@
         android:id="@+id/seatStatusFragment"
         android:name="one.app.hack2hire.ui.seat_status.SeatStatusFragment"
         android:label="fragment_seat_status"
-        tools:layout="@layout/fragment_seat_status" />
+        tools:layout="@layout/fragment_seat_status" >
+        <action
+            android:id="@+id/action_seatStatusFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
