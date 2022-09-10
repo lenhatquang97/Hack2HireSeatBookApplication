@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import one.app.hack2hire.databinding.ActivityMainBinding
 import one.app.hack2hire.exam.ExamActivity
 import one.app.hack2hire.sample.SampleActivity
