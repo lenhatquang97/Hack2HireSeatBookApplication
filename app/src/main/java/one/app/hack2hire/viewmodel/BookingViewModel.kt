@@ -31,7 +31,6 @@ class BookingViewModel: ViewModel() {
                 override fun onResponse(call: Call<PutModel>, response: Response<PutModel>) {
                     if (response.code() == 200) {
                         Log.d("BookingViewModel", "cancelBooking: ${response.body()}")
-                        onSuccess()
                     } else {
                         Log.d("BookingViewModel", "cancelBooking: ${response.errorBody()}")
                     }

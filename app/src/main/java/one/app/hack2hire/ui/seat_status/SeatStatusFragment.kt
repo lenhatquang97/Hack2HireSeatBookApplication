@@ -37,6 +37,7 @@ class SeatStatusFragment : Fragment() {
                 viewModel.cancelBooking(seat.showId, id!!, onSuccess)
             }
             StaticBooking.bookingSeats.clear()
+            onSuccess()
 
         }
         binding.buttonHome.setOnClickListener {
