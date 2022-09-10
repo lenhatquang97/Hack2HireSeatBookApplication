@@ -22,18 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(viewBinding.root)
-        setupView()
     }
 
-    private fun setupView() {
-        viewBinding.btnOpenSample.setOnClickListener {
-            startActivity(Intent(this, SampleActivity::class.java))
-        }
-        viewBinding.btnSettings.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
-        viewBinding.btnExam.setOnClickListener {
-            startActivity(Intent(this, ExamActivity::class.java))
-        }
-    }
 }

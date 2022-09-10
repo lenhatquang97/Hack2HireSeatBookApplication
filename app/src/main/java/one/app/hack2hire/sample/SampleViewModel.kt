@@ -3,7 +3,7 @@ package one.app.hack2hire.sample
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import one.app.hack2hire.model.BookingMessage
-import one.app.hack2hire.service.Hack2HireRepository
+import one.app.hack2hire.not_used.Hack2HireRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -10,7 +10,7 @@ class SettingsPreference(context: Context) {
 
     companion object {
         private const val DEFAULT_ENDPOINT = "https://api.hack2hire.onemount.dev"
-        private const val KEY_ENDPOINT = "endpoint"
+        private const val KEY_ENDPOINT = "booking"
     }
 
     private val pref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
