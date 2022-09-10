@@ -13,10 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import one.app.hack2hire.Hack2HireApplication
 import one.app.hack2hire.R
-import one.app.hack2hire.model.SeatsModel
-import one.app.hack2hire.model.SeatsModelWrapper
-import one.app.hack2hire.model.ShowsModel
-import one.app.hack2hire.model.StructuredBooking
+import one.app.hack2hire.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +24,25 @@ class BookingViewModel: ViewModel() {
 
     private var _seatLists = MutableLiveData<List<SeatsModel>>().apply { value = emptyList() }
     val seatLists: MutableLiveData<List<SeatsModel>>  =_seatLists
+
+    fun cancelBooking(showId: String, reservationId: String, onSuccess: () -> Unit){
+        viewModelScope.launch(Dispatchers.IO) {
+            Hack2HireApplication.bookingRepository.putReservation(showId, reservationId).enqueue(object : Callback<PutModel> {
+                override fun onResponse(call: Call<PutModel>, response: Response<PutModel>) {
+                    if (response.code() == 200) {
+                        Log.d("BookingViewModel", "cancelBooking: ${response.body()}")
+                        onSuccess()
+                    } else {
+                        Log.d("BookingViewModel", "cancelBooking: ${response.errorBody()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<PutModel>, t: Throwable) {
+                    Log.d("BookingViewModel", "cancelBooking: ${t.message}")
+                }
+            })
+        }
+    }
 
     fun postReservations(showId: String, context: Context, onSuccess: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {

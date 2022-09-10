@@ -50,7 +50,9 @@ class DisplaySeatsFragment : Fragment() {
         binding.confirmButton.setOnClickListener {
 
             val onSuccess = fun() {
-                findNavController().navigate(R.id.action_displaySeatsFragment_to_seatStatusFragment)
+                val bundle = Bundle()
+                bundle.putString("showId", id)
+                findNavController().navigate(R.id.action_displaySeatsFragment_to_seatStatusFragment, bundle)
             }
             if(StaticBooking.bookingSeats.size != 0){
                 viewModel.postReservations(id!!, requireContext(), onSuccess)
